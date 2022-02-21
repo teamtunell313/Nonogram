@@ -1,0 +1,66 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.App {
+  text-align: center;
+}
+
+#taskTop{
+  position: relative; 
+  left: 23px; 
+  /* border: blue solid 2px; */
+}
+
+#taskLeft{
+  /* border: blue solid 2px; */
+  display: inline-block;
+  position: relative; 
+  top: 0px;
+}
+
+#grid{
+  position: relative;
+  top: 7px;
+  display: inline-block;
+  /* border: black 1px solid; */
+  margin: 3px;
+}
+
+#taskTop > .task-group {
+  border: black 1px solid;
+  display: inline-block;
+}
+#taskLeft > .task-group {
+  height: 22px;
+}
+#taskLeft > .task-group > .task-cell{
+  display: inline-block;
+}
+.task-cell {
+  text-align: center;
+  width: 22px;
+  height: 20px;
+}
+
+.task-group {
+  border: black 1px solid;
+}
+
+.cell {
+  background-color: white;
+  height: 25px;
+  width: 25px;
+  border: green, solid, 1px;
+  float: left;
+  margin-right: -1px;
+  margin-top: -1px;
+  color: grey;
+}
+.blot {
+  background-color: black;
+  color: black;
+}
+.X {
+  color: red;
+}
