@@ -43,6 +43,7 @@ for hint in hints:
         # print('  actual: ', format(actual, f'0{row_length}b'))
         puzzle_set = []
         solution_set = []
+        section_set = []
         for reveal_mask in range(0, max_pattern-1):
             puzzle_string = ''
             for i in range(0, row_length):
@@ -51,9 +52,14 @@ for hint in hints:
                     character = '1' if actual & pow(2, i) else 'x'
                 puzzle_string = character + puzzle_string
             puzzle_set.append(puzzle_string)
-# Query User for solutions
-            # solutn_string = input(f"hint:{hint} Solve {puzzle_string}:")
-            solutn_string = '?'*row_length
+            
+            # Query User for sections
+            section_string = input(f"hint:{hint} {puzzle_string}:")
+            section_set.append(json.loads(section_string))
+
+            # Query User for solutions
+            solutn_string = input(f"hint:{hint} Solve {puzzle_string}:")
+            # solutn_string = '?'*row_length
             solution_set.append(solutn_string)
             # solution_set.append('?'*row_length)
             
