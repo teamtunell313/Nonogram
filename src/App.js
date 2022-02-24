@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
 function App() {
   // const [seconds, setSeconds] = useState(0);
-  const start = new Date();
+  let start = new Date();
 
   const clickHandler = (e) => {
     if (e.type === 'click') {
@@ -30,11 +30,11 @@ function App() {
   const taskTop = () => {
     const topArray = puzzleHeaders.slice(0, dimension);
     return (
-      <div id="taskTop">
+      <div id="taskTop" key="taskTop">
         {topArray.map((group) => (
-          <div className="task-group">
+          <div className="task-group" key={group}>
             {group.map((cell) => (
-              <div className="task-cell">{cell}</div>
+              <div className="task-cell" key={cell}>{cell}</div>
             ))}
           </div>
         ))}
@@ -45,11 +45,11 @@ function App() {
   const taskLeft = () => {
     const leftArray = puzzleHeaders.slice(dimension, puzzleHeaders.length);
     return (
-      <div id="taskLeft">
+      <div id="taskLeft" key="taskLeft">
         {leftArray.map((group) => (
-          <div className="task-group">
+          <div className="task-group" key={group}>
             {group.map((cell) => (
-              <div className="task-cell">{cell}</div>
+              <div className="task-cell" key={cell}>{cell}</div>
             ))}
           </div>
         ))}
@@ -67,6 +67,8 @@ function App() {
     for (let i = 0; i < allCells.length; i += 1) {
       allCells[i].className = 'cell';
     }
+    start = new Date();
+    document.getElementsByTagName('h3')[0].innerText = '';
   };
 
   const finishTime = () => {
@@ -87,11 +89,11 @@ function App() {
       >
         {taskTop()}
         {taskLeft()}
-        <div id="grid">
+        <div id="grid" key="grid">
           {dimensionArray.map((row) => (
-            <div className="row" count={row}>
+            <div className="row" count={row} key={row}>
               {dimensionArray.map((cell) => (
-                <button type="button" className="cell" sequence={row * 5 + cell} onClick={(e) => clickHandler(e)} onContextMenu={(e) => clickHandler(e)}>{row * 5 + cell}</button>
+                <button type="button" key={cell} className="cell" sequence={row * 5 + cell} onClick={(e) => clickHandler(e)} onContextMenu={(e) => clickHandler(e)}>{row * 5 + cell}</button>
               ))}
             </div>
           ))}

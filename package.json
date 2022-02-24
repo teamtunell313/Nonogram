@@ -3,25 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^7.2.1",
     "@typescript-eslint/parser": "^4.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^5.0.0",
     "typescript": "^4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "cypress": "cypress open",
     "test": "react-scripts test",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "generate": "python3 generateTestData.py"
   },
   "browserslist": {
     "production": [
@@ -36,6 +34,6 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^5.2.0"
+    "cypress": "^9.5.0"
   }
 }
