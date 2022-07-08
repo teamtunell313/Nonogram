@@ -13,13 +13,13 @@ Inspired by nonogram puzzles found at https://www.puzzle-nonograms.com/
 <hr>
 
 ## Architecture ##
-**nonogram.spec.js**: reads puzzle from webpage and enters puzzle solution
+**cypress/integration/examples/nonogram.spec.js**: reads puzzle from webpage and enters puzzle solution
 
-**DivideOpenings.js**: given a row of data, creates sets of empty cells
+**src/DivideOpenings.js**: given a row of data, creates sets of empty cells
 
-**OpeningSolver.js**: matches the hints to the sets of empty cells
+**src/OpeningSolver.js**: matches the hints to the sets of empty cells
 
-**createBlotArray.js**: given one set of empty cells and hints, fills in Blots and Xs.
+**src/createBlotArray.js**: given one set of empty cells and hints, fills in Blots and Xs.
 
 <hr>
 
