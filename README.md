@@ -13,9 +13,9 @@ Inspired by nonogram puzzles found at https://www.puzzle-nonograms.com/
 <hr>
 
 ## Architecture ##
-**cypress/integration/examples/nonogram.spec.js**: reads puzzle from webpage and enters puzzle solution
+**cypress/integration/examples/nonogram.spec.js**: reads puzzle from webpage, makes series from columns and rows, updates puzzle solution, and clicks it in.
 
-**src/DivideOpenings.js**: given a row of data, creates sets of empty cells
+**src/divideSeries.js**: given a "header" object with a solution series, creates a set of "openings" and matches them to hint numbers. Calls OpeningSolver to fill out each matched opening.
 
 **src/OpeningSolver.js**: matches the hints to the sets of empty cells
 
