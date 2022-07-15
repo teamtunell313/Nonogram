@@ -21,9 +21,7 @@ it('fetch nonogram top and side data into tables', () => {
           determined: 9,
           guide: [1, 1, 1, 3],
           needsUpdate: true
-        },
-        { ... },
-        { ... }
+        }, ...
       ]
     }
     */

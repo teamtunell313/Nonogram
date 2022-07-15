@@ -3,44 +3,70 @@
 import OpeningSolver from './OpeningSolver';
 import createBlotArray from './createBlotArray';
 /**
- * given data = {
- *            dimension: length of row
- *            guide: an array with the header hint numbers
- *            determined: The number of cells declared by the Guide Array
- *            determinedXs: The number of Xs in the row.
- *            xLocations: [x locations]
- *            blotLocations: [blot locations]
- *            emptyLocations: [empty locations]
- *        };
- *
- * The rationale here is to split the line into openings that need to be filled.
- * This is groups of cells between Xs with at least one blank cell. Then we send
- * these openings off to get solved individually if possible. The job of this
- * function is to match up hints with openings.
- *
- *    returns
- *    {
- *      data:[{value: 0 || 1 || -1, location: index}, {}, {}, ...],
- *      complete: has this row been fully defined?
- *    }
- * @param {object} data
- * @returns {object}
+ * header = { 
+ *  complete: false,
+    determined: 9,
+    guide: [1, 1, 1, 3],
+    needsUpdate: true,
+    series: [0, -1, 1, 1, 0, ...]
+  }
  */
+const debug = false
+
 const divideSeries = (header) => {
-  header.complete = true
-  header.series = [0,0,1,0,0,1,0,0,1,-1]
-  return header
+  // header.complete = true
+  // header.series = [0,0,1,0,0,1,0,0,1,-1]
+  // make an array of openings
+  const openings = []
+  let openingIndex = ''
+  let currentXrun = 0
+  let xRuns = []
+  debug && console.log({state: header.series})
+  for (let i = 0; i < header.series.length; i++){
+    switch(header.series[i]){
+      case -1: 
+        debug && console.log('X', {openingIndex, currentXrun})
+        if(openingIndex !== '') {
+          currentXrun > 0 && xRuns.push(currentXrun)
+          currentXrun = 0
+          let opening = {
+            opening: header.series.slice(openingIndex, i),
+            xSeries: xRuns
+          }
+          debug && console.log({opening})
+          openings.push(opening)
+          openingIndex = ''
+        }
+        break;
+      case 0:
+        debug && console.log('_', {openingIndex, currentXrun})
+        if(openingIndex === '') openingIndex = i
+        if(currentXrun > 0) {
+          xRuns.push(currentXrun)
+          currentXrun = 0
+        }
+        break;
+      case 1:
+        debug && console.log('1', {openingIndex, currentXrun})
+        if(openingIndex === '') openingIndex = i
+        currentXrun++
+    }
+  }
+  if (openingIndex !== ''){
+    currentXrun > 0 && xRuns.push(currentXrun)
+    let opening = {
+      opening: header.series.slice(openingIndex, header.series.length),
+      xSeries: xRuns
+    }
+    debug && console.log({opening})
+    openings.push(opening)
+  }
+  currentXrun = 0
+
+  return openings
+  
   // let position = 0;
   // const returnData = []; // [{value: 1, location: 3}, {}, {}]
-  // const openings = []; // an array of openings, each with the position and length of blot sequences.
-  // // eg [{dimension: 5,
-  // //      guide: [1, 2],
-  // //      determined: 4,
-  // //      blotArray: [
-  // //        {pos:1, length: 2},
-  // //        {pos:4, length: 1}
-  // //      ]
-  // //    }]
 
   // // NO Xs!
   // if (data.xLocations.length === 0) {

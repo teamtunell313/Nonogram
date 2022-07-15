@@ -17,6 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "cypress": "cypress open",
+    "generate": "node -e \"require('./src/helper').generateTestData(3)\"",
     "test": "react-scripts test",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
   },
